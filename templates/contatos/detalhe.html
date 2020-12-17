@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{contato.nome}} {{contato.sobrenome}} | Agenda</title>
+    <link rel="stylesheet" href="{% static 'css/detalhe.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a class="title" href="{% url 'index' %}">Agenda</a>
+        <img id="img" src="{% static 'img/caderno.png' %}" alt="Logo-agenda">
+      </h1>
+    </header>
+
+    <section>
+      <h2>{{ contato.nome }} {{ contato.sobrenome }}</h2>
+      {% if contato.imagem %}
+        <div>
+          <img src="{{ contato.imagem.url }}" alt="foto_contato">
+        </div>
+      {% endif %}
+      <dl>
+        <dt>ID</dt>
+        <dd>{{ contato.id }}</dd>
+        <dt>Telefone</dt>
+        <dd>{{ contato.telefone}}</dd>
+        <dt>E-mail</dt>
+        <dd>{{ contato.email}}</dd>
+        <dt>Data criação</dt>
+        <dd>{{ contato.data_criacao|date:'d/m/y' }}</dd>
+        <dt>Categoria</dt>
+        <dd>{{ contato.categoria}}</dd>
+        <dt>Descrição</dt>
+        <dd>
+          {{ contato.descricao}}
+        </dd>
+      </dl>
+    </section>
+  </body>
+</html>

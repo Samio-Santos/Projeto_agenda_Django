@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'css_accounts/login.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>Agenda
+        {% if not user.is_authenticated %}
+          <img id="img" src="{% static 'img/caderno.png' %}" alt="Logo-agenda">
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+        <div class="container-img">
+          {% if user.imagem %}
+          <img class="img" src="{{ user.imagem.url }}" alt="foto-perfil" />
+
+          {% else %}
+          <img
+            class="img"
+            src="{% static 'img/user.png' %}"
+            alt="foto-perfil"
+          />
+          {% endif %}
+
+            <div class="dropdown-content">
+              <a href="{% url 'perfil_update' user.id %}"
+                >Perfil<img
+                  src="{% static 'img/usuario-de-perfil.png' %}"
+                  alt="Perfil"
+              /></a>
+              <a href="{% url 'index' %}"
+                >Ver site<img src="{% static 'img/global.png' %}" alt="site"
+              /></a>
+              <a href="{% url 'dashboard' %}"
+                >Dashboard<img
+                  src="{% static 'img/home.png' %}"
+                  alt="botao-logout"
+              /></a>
+            </div>
+          {% endif %}
+        </div>
+      </h1>
+    </header>
+
+    <main>
+      {% if not user.is_authenticated %}
+      <form action="{% url 'login' %}" method="POST" name="form-login">
+        <fieldset>
+            {% csrf_token %}
+    
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+          <legend>Login</legend>
+
+          <div class="input-block">
+            <label for="user">Usuario</label><br />
+            <input
+              type="text"
+              value="{{ request.POST.user }}"
+              id="user"
+              name="user"
+            />
+          </div>
+
+          <div class="input-block">
+            <label for="password">Senha</label><br />
+            <input type="password" id="password" name="password" />
+          </div>
+
+          <button type="submit">Acessar Conta</button>
+        </fieldset>
+      </form>
+
+      {% else %}
+
+      <p>
+        Você já está logado com usuário <span>{{ user }}</span>
+        <a href="{% url 'logout' %}">clique aqui</a>
+        para sair.
+      </p>
+
+      {% endif %}
+    </main>
+  </body>
+</html>

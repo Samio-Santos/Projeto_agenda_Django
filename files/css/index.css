@@ -1,0 +1,118 @@
+main {
+  font-family: sans-serif;
+}
+
+section {
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+form input {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+form input:focus {
+  border: 2px solid #3d8ee4;
+}
+
+.alert-error {
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgba(255, 0, 0, 0.144);
+  color: red;
+  width: 50%;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 5.5rem;
+  padding-left: 1.3rem;
+}
+
+table {
+  padding-left: 1rem;
+}
+
+tr {
+  text-align: justify;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+td,
+th {
+  word-wrap: break-word;
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+ul.pagination {
+  display: inline-block;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.pagination li {
+  display: inline;
+}
+
+ul.pagination li a {
+  color: black;
+  float: left;
+  margin: 5px;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+ul.pagination li a.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+ul.pagination li a:hover {
+  background-color: #ddd;
+}
+
+@media (max-width: 480px) {
+  .deactivate {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  h2,
+  table {
+    padding-left: 113px;
+  }
+
+  table {
+    width: 85%;
+  }
+
+  .alert-error {
+    text-align: initial;
+  }
+}

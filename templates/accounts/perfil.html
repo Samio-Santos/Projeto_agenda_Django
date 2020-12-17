@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="{% static 'css_accounts/perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Agenda
+          <img id="img" src="{% static 'img/caderno.png' %}" alt="Logo-agenda">
+        </h1>
+      </header>
+    
+    <main>
+        <form action="{% url 'perfil_update' user.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="img-block">
+                {% if user.imagem %}
+                <img class="img-perfil" src="{{ user.imagem.url }}" alt="foto-perfil" />
+      
+                {% else %}
+                <img
+                class="img-block"
+                  src="{% static 'img/user3.png' %}"
+                  alt="foto-perfil"
+                />
+                {% endif %}
+            </div>
+
+            <div class="input-block">
+                <label for="{{ form.id_first_name_for_label }}">Nome:</label>
+                {{ form.first_name }}
+            </div>
+
+            <div class="input-block">
+                <label for="{{ form.id_last_name_for_label }}">Sobreome:</label>
+                {{ form.last_name }}
+            </div>
+
+            <div class="input-block">
+                <label for="{{ form.id_email }}">E-mail:</label>
+                {{ form.email }}
+            </div>
+
+            <div class="input-block">
+                <label for="{{ form.id_bio_for_label }}">Bio:</label>
+                {{ form.bio }}
+            </div>
+
+            <div class="input-block-img">
+                <div>
+                    <label for="{{ form.id_imagem_for_label }}">Foto Perfil:</label>
+                    {{ form.imagem }}
+                </div>
+            </div>
+            
+            <button type="submit">Salvar</button>
+        </form>
+    </main>
+</body>
+</html>

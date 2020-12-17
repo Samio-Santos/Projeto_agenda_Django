@@ -1,0 +1,54 @@
+section{
+    font-family: sans-serif;
+}
+
+h2 {
+    font-size: 35px;
+    padding: .8rem;
+}
+
+div img {
+    width: 140px;
+    height: 130px;
+    border: 1px solid black;
+    border-radius: 50%;
+    object-fit: fill;
+    margin-left: .6rem;
+    margin-bottom: .5rem;
+}
+
+
+dl {
+    padding-left: 1rem;
+}
+
+dt {
+    font-size: 19px;
+    font-weight: bolder;
+    margin-bottom: .5rem;
+}
+
+dd {
+    width: 90%;
+    text-align: justify;
+    margin-bottom: 1rem;
+    line-height: 2rem;
+    word-wrap: break-word;
+    
+}
+
+@media (min-width: 600px) {
+
+    h2, dl {
+        padding-left: 113px;
+    }
+
+    div img {
+        margin-left: 113px;
+        margin-bottom: 20px;
+    }
+    
+    dd {
+        width: 70%;
+    }
+}

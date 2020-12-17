@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css_accounts/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Agenda
+        <div class="container-img">
+          {% if user.imagem %}
+          <img class="img" src="{{ user.imagem.url }}" alt="foto-perfil" />
+
+          {% else %}
+          <img
+            class="img"
+            src="{% static 'img/user.png' %}"
+            alt="foto-perfil"
+          />
+          {% endif %}
+          <div class="dropdown-content">
+            <a href="{% url 'perfil_update' user.id %}"
+              >Perfil<img
+                src="{% static 'img/usuario-de-perfil.png' %}"
+                alt="Perfil"
+            /></a>
+            <a href="{% url 'index' %}"
+              >Ver site<img src="{% static 'img/global.png' %}" alt="site"
+            /></a>
+            <a href="{% url 'logout' %}"
+              >Sair<img
+                src="{% static 'img/botao-logout .png' %}"
+                alt="botao-logout"
+            /></a>
+          </div>
+        </div>
+      </h1>
+    </header>
+
+    <main>
+      <h2>Olá, {{user.first_name}} {{user.last_name}}!</h2>
+      {% if messages %}
+          {% for message in messages %}
+              <div class="{{ message.tags }}" role="alert">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      {% endif %}
+      <form
+        action="{% url 'dashboard' %}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+
+        <div class="input-block">
+          <label for="{{ form.nome.id_for_label }}">Nome:</label>
+          {{ form.nome }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
+          {{ form.sobrenome }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+          {{ form.telefone }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.email.id_for_label }}">E-mail:</label>
+          {{ form.email }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.data_criacao.id_for_label }}"
+            >Data de criação:</label
+          >
+          {{ form.data_criacao }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.descricao.id_for_label }}">Descrição:</label>
+          {{ form.descricao }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.categoria.id_for_label }}">Categoria:</label>
+          {{ form.categoria }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.imagem.id_for_label }}">Imagem:</label>
+          {{ form.imagem }}
+        </div>
+
+        <div class="input-block">
+          <label for="{{ form.mostrar.id_for_label }}">Mostar:</label>
+          {{ form.mostrar }}
+        </div>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </main>
+  </body>
+</html>

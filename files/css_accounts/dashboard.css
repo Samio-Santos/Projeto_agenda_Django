@@ -1,0 +1,181 @@
+.site {
+  position: absolute;
+  left: 18rem;
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  font-family: sans-serif;
+}
+.container-img {
+  width: 10%;
+  height: 4rem;
+  background-color: black;
+  cursor: pointer;
+  margin-right: 2rem;
+  font-family: sans-serif;
+}
+
+.img {
+  margin: 0 auto;
+  margin-top: 8px;
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: fill;
+  margin-bottom: 1rem;
+  z-index: 10;
+}
+
+.container-img {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-top: -8px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  font-size: 13px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(128, 128, 128, 0.158);
+}
+
+.container-img:hover .dropdown-content {
+  display: block;
+}
+
+/* Formulario */
+
+form {
+  font-family: sans-serif;
+}
+
+h2 {
+  font-size: 30px;
+  padding-left: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.input-block {
+  width: 90%;
+  border: none;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-block label {
+  font-weight: bolder;
+}
+
+.input-block input {
+  width: 60%;
+  padding: 9px;
+  border: 0.1px solid black;
+  border-radius: 4px;
+  outline: none;
+}
+
+textarea,
+select {
+  width: 60%;
+  outline: none;
+  resize: vertical;
+}
+
+.input-block textarea:focus,
+input:focus,
+select:focus {
+  border: 1.5px solid #3d8ee4;
+}
+
+button {
+  width: 30%;
+  background-color: blue;
+  color: white;
+  padding: 0.8rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 3rem;
+  transition: 0.5s;
+  font-weight: bolder;
+  margin-left: 1rem;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+/* Alertas */
+
+.alert-success {
+  text-align: center;
+  background-color: rgba(0, 128, 0, 0.233);
+  color: green;
+  width: 90%;
+  margin-left: .5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+
+.alert-error {
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.144);
+  color: red;
+  width: 90%;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-left: .5rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 600px) {
+  .input-block,
+  h2 {
+    width: 80%;
+    margin-left: 97px;
+  }
+
+  button {
+    width: 150px;
+    margin-left: 89px;
+  }
+
+  .input-block input,
+  select,
+  textarea {
+    width: 70%;
+    outline: none;
+  }
+
+  .alert-success, .alert-error {
+    width: 50%;
+    margin-left: 100px;
+    text-align: initial;
+  }
+
+}

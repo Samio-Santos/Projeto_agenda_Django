@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a class="title" href="{% url 'index' %}">Agenda</a>
+        <img id="img" src="{% static 'img/caderno.png' %}" alt="Logo-agenda">
+      </h1>
+    </header>
+    <main>
+      <section>
+        <form method="GET" action="{% url 'busca' %}">
+          <input type="search" value="{{ request.GET.termo }}" name="termo" placeholder="Pesquisa" />
+          
+        </form>
+
+        {% if messages %}
+            {% for message in messages %}
+              <div class="{{ message.tags }}" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+        {% endif %}
+        
+      </section>
+      <h2>Minha Agenda</h2>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Telefone</th>
+          <th>Categoria</th>
+        </tr>
+
+        {% for contato in pessoa %} 
+          {% if contato.mostrar %}
+            <tr>
+              <td>
+                <a href="{% url 'contato_detalhe' contato.id %}"
+                  >{{ contato.nome }}</a
+                >
+              </td>
+              <td>{{ contato.sobrenome }}</td>
+              <td>{{ contato.telefone }}</td>
+              <td>{{ contato.categoria }}</td>
+            </tr>
+          {% endif %} 
+        {% endfor %}
+      </table>
+      <ul class="pagination">
+        {% for paginas in pessoa.paginator.page_range %} 
+          {% if pessoa.number == paginas %}
+            <li><a class="active" href="?p={{ paginas }}&termo={{ request.GET.termo }}">{{ paginas }}</a></li>
+
+          {% else %}
+            <li><a href="?p={{ paginas }}&termo={{ request.GET.termo }}">{{ paginas }}</a></li>
+
+          {% endif %} 
+        {% endfor %}
+      </ul>
+    </main>
+  </body>
+</html>
